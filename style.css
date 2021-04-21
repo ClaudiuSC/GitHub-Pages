@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: hsl(0, 0%, 95%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 15px;
+    width: 1440px;
+}
+
+p {
+    opacity: .75;
+    font-family: 'Lexend Deca', sans-serif;
+    line-height: 1.8;
+    padding-bottom: 5rem;
+}
+
+h1 {
+    font-family: 'Big Shoulders Display', cursive;
+    color: hsl(0, 0%, 95%);
+    line-height: 2.5;
+    font-size: 2.5rem;
+}
+
+.container {
+    display: flex;
+    width: 920px;
+    height: 540px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+/*
+    cards styling 
+ */
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 3rem;
+    color: hsl(0, 0%, 95%);
+    width: 33.33%;
+}
+
+.sedans {
+    background-color: hsl(31, 77%, 52%);
+}
+
+.suvs {
+    background-color: hsl(184, 100%, 22%);
+}
+
+.luxury {
+    background-color: hsl(179, 100%, 13%);
+}
+
+/* 
+    buttons on active and passive states
+ */
+
+.btn {
+    font-family: 'Lexend Deca', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    height: 50px;
+    width: 146px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid hsl(0, 0%, 95%);
+    border-radius: 25px;
+    background-color: hsl(0, 0%, 95%);
+}
+
+.sedans .btn {
+    color: hsl(31, 77%, 52%);
+}
+
+.suvs .btn {
+    color:  hsl(184, 100%, 22%);
+}
+
+.luxury .btn {
+    color: hsl(179, 100%, 13%);
+}
+
+.btn:hover {
+    background-color: transparent;
+    color:  hsl(0, 0%, 95%);
+}
+
+/* 
+    mobile styling
+*/
+
+@media screen and (max-width: 376px) {
+    body {
+        width: 376px;
+        height: auto;
+    }
+
+    .container {
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        align-items: center;
+        margin: 5rem 1rem 5rem 1rem;
+    }
+
+    .cards {
+        width: 80vw;
+    }
+
+    .container > div:first-child {
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .container > div:last-child {
+        border-radius: 0 0 20px 20px;
+    }
+
+}
