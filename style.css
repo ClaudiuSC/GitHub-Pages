@@ -55,8 +55,12 @@ body {
   margin: 0 auto;
 }
 
-.active-dice {
+.dice.active {
   box-shadow: 2px -2px 10px #1E3163, -2px 2px 10px #1E3163;
+}
+
+.dice.animation {
+  animation: shake 1s normal;
 }
 
 .btn {
@@ -72,16 +76,37 @@ body {
   display: none;
 }
 
-.active-btn {
-  display: inline-block;
-}
-
 .btn:active {
   transform: scale(.97);
 }
+
+.btn.active {
+  display: inline-block;
+}
+
 
 @media (max-width: 400px) {
   .container {
     padding: 30px;
   }
 }
+
+@keyframes shake {
+  0% {
+    transform: rotate(360deg);
+  }
+  /* 25% {
+    transform: rotate(-10deg);
+  } */
+  50% {
+    transform: rotate(-90deg);
+  } 
+  75% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+

@@ -1,66 +1,72 @@
 const playerTurn = document.getElementById("player-turn")
 const scoreOne = document.getElementById("score1")
 const scoreTwo = document.getElementById("score2")
-let diceOne = document.getElementById("dice1")
-let diceTwo = document.getElementById("dice2")
+const diceOne = document.getElementById("dice1")
+const diceTwo = document.getElementById("dice2")
 const rollDiceBtn = document.getElementById("roll-dice")
 const resetGameBtn = document.getElementById("reset-game")
-let turn = 1
-let gameState = true
+let turn = true
 let trackScoreOne = 0
 let trackScoreTwo = 0
 
 rollDiceBtn.addEventListener("click", () => play())
 
 resetGameBtn.addEventListener("click", ()=> {    
-    turn = 1
+    turn = true
     trackScoreOne = 0
     trackScoreTwo = 0
     diceOne.textContent = "-"
     diceTwo.textContent = "-"
     scoreOne.textContent= "0"
     scoreTwo.textContent= "0"
-    playerTurn.textContent ="1 Turn"
-    startGame()
+    playerTurn.textContent ="Player 1 Turn"
+    switchActiveClass(rollDiceBtn, resetGameBtn)
+    diceOne.classList.remove("animation")
+    diceOne.classList.add("active")
 })
 
-
 function play() {
-  if (turn % 2 === 1) {
+  if (turn) {
+    shakeDice(diceOne, diceTwo)
     const dice = Math.floor(Math.random() * 6 + 1)
     trackScoreOne += dice
-    scoreOne.textContent = trackScoreOne
-    diceOne.textContent = dice
-    playerTurn.textContent ="2 Turn"
-    diceOne.classList.remove("active-dice")
-    diceTwo.classList.add("active-dice")
-  } else if (turn %2 === 0) {
+    setTimeout(()=>{scoreOne.textContent = trackScoreOne
+                    playerTurn.textContent ="Player 2 Turn"
+                    diceOne.textContent = dice   
+                    checkScore()
+                    if(trackScoreOne < 20) {switchActiveClass(diceTwo, diceOne)}
+                  }, 450)    
+  } else {
+    shakeDice(diceTwo, diceOne)
     const dice = Math.floor(Math.random() * 6 + 1)
     trackScoreTwo += dice
-    scoreTwo.textContent = trackScoreTwo
-    diceTwo.textContent = dice
-    playerTurn.textContent ="1 Turn" 
-    diceTwo.classList.remove("active-dice")
-    diceOne.classList.add("active-dice")
+    setTimeout(()=>{scoreTwo.textContent = trackScoreTwo
+                    playerTurn.textContent ="Player 1 Turn" 
+                    diceTwo.textContent = dice
+                    checkScore()
+                    if(trackScoreTwo < 20) {switchActiveClass(diceOne, diceTwo)}
+                  }, 450)
   }
-  if(trackScoreOne >= 20) {
-    gameState = false
-    playerTurn.textContent ="1 Has Won 🥳"
-    resetGame()
-  } else if(trackScoreTwo >= 20) {
-    gameState = false
-    playerTurn.textContent ="2 Has Won 🎉"
-    resetGame()
-  }
-  turn++
+  turn = !turn
 } 
 
-function startGame() {
-  rollDiceBtn.classList.add("active-btn")
-  resetGameBtn.classList.remove("active-btn")
+function checkScore() {
+  if(trackScoreOne >= 20) {
+    playerTurn.textContent ="Player 1 Has Won 🥳"
+    switchActiveClass(resetGameBtn, rollDiceBtn)
+  } else if(trackScoreTwo >= 20) {
+    playerTurn.textContent ="Player 2 Has Won 🎉"
+    switchActiveClass(resetGameBtn, rollDiceBtn)
+  }
 }
 
-function resetGame() {
-  rollDiceBtn.classList.remove("active-btn")
-  resetGameBtn.classList.add("active-btn")
+function switchActiveClass(a, b) {
+  a.classList.add("active")
+  b.classList.remove("active")
 }
+
+function shakeDice(a, b) {
+  a.classList.add("animation")
+  b.classList.remove("animation")
+}
+
