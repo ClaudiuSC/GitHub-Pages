@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Boiler plate</title>
+    <title>Binary to decimal converter</title>
 </head>
 <body>
         <div class="container">
+            <h1>Binary to decimal converter</h1>
             <label>Enter a binary number with a maximum length of 8 characters</label>
             <div class="relative">
                 <input type="text" class="binary" pattern="[0-1]{1,8}" maxlength="8">
                 <div class="error">Please enter only 0 and 1 characters</div>
             </div>
-            <button id="btn">Submit</button>
-            <p>Decimal number is:</br> <span  id="result"></span></p>
+            <button id="btn">Convert</button>
+            <p>Your decimal number is:</br> <span  id="result"></span></p>
         </div>
 
     <script src="script.js"></script>
