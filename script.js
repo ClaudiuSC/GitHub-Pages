@@ -8,8 +8,8 @@ btn.addEventListener("click", () => {if(checkInput() != 0){result.textContent = 
 function binToDec(x) {
     let counter = 0
     let total = 0
-    for (let i=binInput.value.length-1; i>-1 ;i--) {
-        if ( binInput.value[i] == 1) {
+    for (let i=x.length-1; i>-1 ;i--) {
+        if ( x[i] == 1) {
             total += 2**counter
         }
         counter++
