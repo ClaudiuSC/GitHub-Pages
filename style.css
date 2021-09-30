@@ -1,112 +1,55 @@
 * {
-  box-sizing: border-box;
-}
-
+    box-sizing: border-box;
+  }
+  
 body {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   justify-content: center;
   align-items: center;
-  font-family: 'Lato', sans-serif;
-  background-color: #38A3A5;
-  overflow: hidden;
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  width: 500px;
-  height: 450px;
-  background-color: #FEFBF3;
-  padding: 30px 80px;
-  box-shadow: 10px -10px 40px #FFDAC7, -1px 1px 10px #FFDAC7;
-  color: #150050;
+  width: 300px;
 }
 
-.container > h1 {
-  font-weight: 900;
+.container label {
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.container button,
+.container input {
+  width: 150px;
+  margin: 0px auto 30px;
+}
+
+.relative {
   position: relative;
-}
-
-.container > h1::before {
-  content: "";
-  position: absolute;
-  background-color: #38A3A5;
-  width: 100%;
-  height: 1px;
-  left: 0;
-  top: 150%;
-}
-
-.board {
-  display: flex;
-  justify-content: space-between;
-}
-
-.dice {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  width: 100px;
-  background-color: #FDD2BF;
-  border-radius: 10px;
-  font-size: 70px;
-  font-weight: 700;
   margin: 0 auto;
 }
 
-.dice.active {
-  box-shadow: 2px -2px 10px #1E3163, -2px 2px 10px #1E3163;
-}
-
-.dice.animation {
-  animation: shake 1s normal;
-}
-
-.btn {
-  padding: 10px 25px;
-  background-color: #FFADAD;
-  color: #fff;
-  margin-top: 50px;  
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
+.error {
   display: none;
+  position: absolute;
+  top: 22px;
+  left: 0%;
+  height: 20px;
+  background-color: red;
+  white-space: nowrap;
+  color: white;
 }
 
-.btn:active {
-  transform: scale(.97);
+.binary.show + .error {
+  display: block;
 }
 
-.btn.active {
-  display: inline-block;
+#result {
+  font-size: 32px;
+  font-weight: 700;
 }
-
-
-@media (max-width: 400px) {
-  .container {
-    padding: 30px;
-  }
-}
-
-@keyframes shake {
-  0% {
-    transform: rotate(360deg);
-  }
-  /* 25% {
-    transform: rotate(-10deg);
-  } */
-  50% {
-    transform: rotate(-90deg);
-  } 
-  75% {
-    transform: rotate(45deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-
