@@ -215,12 +215,12 @@ body {
 
   body {
     display: block;
+    width: 100vw;
   }
 
   .container {
     flex-direction: column;
     width: 100%;
-    border: none;
   }
 
   .bbq-main,
