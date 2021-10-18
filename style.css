@@ -220,6 +220,7 @@ body {
   .container {
     flex-direction: column;
     width: 100%;
+    border: none;
   }
 
   .bbq-main,
