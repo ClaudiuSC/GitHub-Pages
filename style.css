@@ -1,252 +1,44 @@
 * {
-  box-sizing: border-box;
-}
+    box-sizing: border-box;
+  }
 
 body {
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  font-family: "Source Sans Pro", sans-serif;
-  color: #5a5a5a;
-  margin: 0;
+  text-align: center;
+  background-image: linear-gradient(to right, #e66465, #9198e5);
 }
 
-/* main section */
 
-.container {
-  max-width: 960px;
-  display: flex;
-  border: 1px solid #989898;
-}
-
-.bbq-main {
-  position: relative;
+h1 {
+  font-size: 3rem;
+  text-shadow: #000 0px 0px 2px;
   color: #fff;
-  width: 60%;
 }
 
-.bbq-main::after {
-  content: "";
-  background-image: url(images/bbq.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: blur(2px);
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
+div {
+  padding: 2rem;
+  width: 400px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  color: darkslategray;
+  margin: 4rem auto;
+  font-size: 1.2rem;
+
 }
 
-.filter {
-  background-color: rgba(34, 34, 34, 0.7);
-  height: 100%;
-  width: 100%;
-  padding: 0 1rem;
-}
-
-.title-container {
-  text-align: center;
-  padding: 18rem 0;
-  line-height: 1;
-}
-
-/*  form section */
-
-.form-section {
-  width: 40%;
-}
-
-.form-container {
-  padding: 0 1.8rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.register-form {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-}
-
-.register-form input,
-.register-form button {
-  margin: 0 0 0.8rem;
-  text-align: center;
-  border-radius: 7px;
-  padding: 0.7rem;
-}
-
-.register-form input {
-  border: 1px solid #818181;
-  color: #989898;
-  font-weight: 300;
-  font-size: 1rem;
-  outline: none;
-}
-
-.register-form button {
+button {
+  height: 100px;
+  width: 100px;
+  background-color: red;
   border: none;
-  color: #fff;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 165, 29, 1) 0%,
-    rgba(255, 113, 59, 1) 100%
-  );
-  text-transform: uppercase;
-  font-size: 0.625rem;
-  letter-spacing: 1.5px;
-  font-weight: 900;
   cursor: pointer;
+  border-radius: 50%;
 }
 
-.register-form button:hover {
-  opacity: 0.9;
+button:hover,
+button:focus {
+  outline: 4px solid beige;
 }
 
-.register-form button:focus {
-  transform: scale(0.99);
-  opacity: 0.9;
-}
-
-/*  typography */
-
-.slogan {
-  display: inline-block;
-  margin: 0;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  font-weight: 900;
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 165, 29, 1) 0%,
-    rgba(255, 113, 59, 1) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  padding-top: 15px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  letter-spacing: 1px;
-  text-align: center;
-  position: relative;
-}
-
-.slogan::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 165, 29, 1) 0%,
-    rgba(255, 113, 59, 1) 100%
-  );
-}
-
-.title {
-  font-size: 3.5rem;
-  font-weight: 300;
-  margin: 0;
-}
-
-.accent-bold {
-  font-weight: 900;
-  display: block;
-}
-
-.main-subtitle,
-.form-subtitle {
-  color: #f18119;
-  text-transform: uppercase;
-  font-weight: 900;
-}
-
-.main-subtitle {
-  font-size: 1.75rem;
-  margin: 0.5em;
-}
-
-.form-title {
-  margin: 0 0 0.5rem;
-  font-size: 1.75rem;
-  font-weight: 900;
-}
-
-.form-subtitle {
-  font-size: 1.125rem;
-  margin: 0 0 1rem;
-}
-
-.form-text {
-  font-size: 1.125rem;
-  font-weight: 300;
-  word-spacing: 1px;
-  margin: 0 0 1rem;
-}
-
-.form-info {
-  font-size: 0.625rem;
-  padding: 0 2rem;
-  color: #989898;
-}
-
-/* @media (max-width: 800px) {
-  .form-info {
-    padding: 0 1.5rem;
-  }
-} */
-
-@media (max-width: 600px) {
-  html {
-    font-size: 0.7rem;
-  }
-
-  body {
-    display: block;
-    width: 100vw;
-  }
-
-  .container {
-    flex-direction: column;
-    width: 100%;
-    border: none;
-  }
-
-  .bbq-main,
-  .form-section {
-    width: 100vw;
-  }
-
-  .title-container {
-    padding: 0;
-  }
-
-  .title {
-    padding: 7rem 2rem 6rem;
-  }
-
-  .main-subtitle {
-    padding-bottom: 3rem;
-    margin: 0;
-  }
-
-  .form-section {
-    margin-bottom: 2rem;
-  }
-
-  .filter {
-    padding: 0;
-  }
+button:active {
+  transform: scale(.98);
 }
