@@ -1,44 +1,112 @@
 * {
     box-sizing: border-box;
   }
-
+  
 body {
-  text-align: center;
-  background-image: linear-gradient(to right, #e66465, #9198e5);
-}
-
-
-h1 {
-  font-size: 3rem;
-  text-shadow: #000 0px 0px 2px;
-  color: #fff;
-}
-
-div {
-  padding: 2rem;
-  width: 400px;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
   background-color: whitesmoke;
-  border-radius: 20px;
-  color: darkslategray;
-  margin: 4rem auto;
-  font-size: 1.2rem;
-
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
 }
 
-button {
-  height: 100px;
-  width: 100px;
-  background-color: red;
+img {
+  width: 100%;
+}
+ 
+/* layout */
+.container {
+  height: 600px;
+  width: 429px;
+  border-radius: 5px;
+  background-image: url(images/table.png);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-of-table {
+  align-self: flex-start;
+}
+
+#computer-player,
+#human-player {
+  height: 168px;
+  width: 120px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+#computer-player {
+  margin-bottom: 1rem;
+}
+
+/* general styling */
+h1 {
+  letter-spacing: 5px;
+  font-size: 3rem;
+  margin: 0 0 1rem;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* overlay & endgame message */
+.overlay {
+  height: 600px;
+  width: 429px;
+  position: absolute;
+  background-color: rgba(129, 129, 129, 0.5);
+  display: none;
+}
+#end-game {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  background-color: tomato;
+  padding: 30px 50px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+
+/* button styling */
+#shuffle-btn,
+#draw-btn,
+#play-again {
+  background-color: yellow;
+  font-weight: 700;
   border: none;
   cursor: pointer;
-  border-radius: 50%;
 }
 
-button:hover,
-button:focus {
-  outline: 4px solid beige;
-}
-
-button:active {
+#shuffle-btn:active,
+#draw-btn:active,
+#play-again:active {
   transform: scale(.98);
+}
+
+#shuffle-btn {
+  font-size: 1.2rem;
+  margin-top: .5rem;
+  margin-right: .5rem;
+}
+
+#draw-btn {
+  font-size: 1.5rem;
+  padding: .5rem;
+  width: 100%;
+}
+
+#draw-btn:disabled {
+  background-color: lightgrey;
 }
