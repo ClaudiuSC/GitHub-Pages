@@ -1,10 +1,10 @@
 let deckId
-let playerOne
-let playerTwo
+let playerComp
+let playerPlayer
 const drawBtn = document.getElementById("draw-btn")
 const remainingCards = document.getElementById("remaining-cards")
-let scoreOne = 0
-let scoreTwo = 0
+let scoreComp = 0
+let scorePlayer = 0
 
 // ====================================Event listeners=========================================================
 // ============================================================================================================
@@ -16,10 +16,7 @@ document.getElementById("shuffle-btn").addEventListener("click", () => {
             deckId = data.deck_id
             drawBtn.disabled = false
             remainingCards.innerText = data.remaining
-            document.getElementById("computer-score").innerText = 0
-            document.getElementById("player-score").innerText = 0
-            document.getElementById("computer-player").innerHTML = ""
-            document.getElementById("human-player").innerHTML = ""
+            resetGame()
         })
 })
 
@@ -29,24 +26,29 @@ drawBtn.addEventListener("click", () => {
         .then(res => res.json())
         .then(data => {
             remainingCards.innerText = data.remaining
-            document.getElementById("computer-player").innerHTML = `<img src="${data.cards[0].image}">`
-            document.getElementById("human-player").innerHTML = `<img src="${data.cards[1].image}">`
+            document.getElementById("computer-card").innerHTML = `<img src="${data.cards[0].image}">`
+            document.getElementById("player-card").innerHTML = `<img src="${data.cards[1].image}">`
             evalCards(data.cards[0].value, data.cards[1].value)
-            // checkGameEnd(data.remaining)
+            checkGameEnd(data.remaining)
         })
+})
+
+document.getElementById("play-again").addEventListener("click", () => {
+    drawBtn.disabled = true
+    resetGame()
 })
 
 
 // ============================================================================================================
 // evaluate the card values + add score + render score
 function evalCards(cardOne, cardTwo) {
-    playerOne = changeCardValue(cardOne)
-    playerTwo = changeCardValue(cardTwo)
-    if(playerOne !== playerTwo){
-        playerOne > playerTwo ? scoreOne++ : scoreTwo++
+    playerComp = changeCardValue(cardOne)
+    playerPlayer = changeCardValue(cardTwo)
+    if(playerComp !== playerPlayer){
+        playerComp > playerPlayer ? scoreComp++ : scorePlayer++
     }
-    document.getElementById("computer-score").innerText = scoreOne
-    document.getElementById("player-score").innerText = scoreTwo
+    document.getElementById("computer-score").innerText = scoreComp
+    document.getElementById("player-score").innerText = scorePlayer
 }
 
 // change the value of the cards with pictures on them
@@ -61,11 +63,23 @@ function changeCardValue(card) {
 }
 
 // check for the end of the game
-// function checkGameEnd(remaining) {
-//     if(remaining === 0) {
+function checkGameEnd(remaining) {
+    if(remaining === 0) {
+        document.querySelector(".overlay").style.display = "block"
+        document.getElementById("end-message").innerText = scoreComp > scorePlayer ? "Computer won :/" : "Player WON!"
+    }
+}
 
-//     }
-// }
-        
-
+// reset game
+function resetGame() {
+    document.getElementById("computer-score").innerText = 0
+    document.getElementById("player-score").innerText = 0
+    document.getElementById("computer-card").innerHTML = ""
+    document.getElementById("player-card").innerHTML = ""
+    document.querySelector(".overlay").style.display = "none"
+    document.getElementById("title").classList.add("expand-text")
+    setTimeout(() => {
+        document.getElementById("title").classList.remove("expand-text")
+    }, 1000); 
+}
 
