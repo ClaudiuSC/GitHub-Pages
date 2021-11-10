@@ -72,6 +72,8 @@ function checkGameEnd(remaining) {
 
 // reset game
 function resetGame() {
+    scoreComp = 0
+    scorePlayer = 0
     document.getElementById("computer-score").innerText = 0
     document.getElementById("player-score").innerText = 0
     document.getElementById("computer-card").innerHTML = ""

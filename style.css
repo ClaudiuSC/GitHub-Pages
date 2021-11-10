@@ -50,7 +50,6 @@ h1 {
   letter-spacing: 5px;
   font-size: 3rem;
   margin: 0 0 1rem;
-    border: 2px solid red;
 }
 /* h1 animation */
 .expand-text {
@@ -60,7 +59,7 @@ h1 {
 
 @keyframes expand {
   50% {
-    letter-spacing: 20px;
+    letter-spacing: 25px;
   }
 
 }
