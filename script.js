@@ -1,87 +1,75 @@
-let deckId
-let playerComp
-let playerPlayer
-const drawBtn = document.getElementById("draw-btn")
-const remainingCards = document.getElementById("remaining-cards")
-let scoreComp = 0
-let scorePlayer = 0
+// Unsplash image used for background image => still waiting my account to get activated and i am using the scrimba api
+// fetch("https://api.unsplash.com/photos/?YyNmKuRo25f8VWci84VPBdpb5WV1_jkRO2x_k84Yg9M?random?orientation=landscape&query=nature") ???check if url is correct
+fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
+    .then(res => {
+        if(!res.ok) {
+            throw Error("Something went wrong")
+        }
+        return res.json()
+    }
+        )
+    .then(data => {
+        document.getElementById("main").style.backgroundImage = `url(${data.urls.regular})`
+        document.getElementById("author").innerHTML = `<small>Picture by:</small> ${data.user.name}`
+    })
+    .catch(err => {
+        console.log(err)
+        document.getElementById("main").style.backgroundImage = `url(https://images.unsplash.com/photo-1488711500009-f9111944b1ab?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MzcwNjM4NTI&ixlib=rb-1.2.1&q=85)`
+    })
 
-// ====================================Event listeners=========================================================
-// ============================================================================================================
-// get deck of cards
-document.getElementById("shuffle-btn").addEventListener("click", () => {
-    fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
-        .then(res => res.json())
+// Coingecko API
+fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
+    .then(res => {
+        if (!res.ok) {
+            throw Error("Something went wrong")
+        }
+        return res.json()
+    })
+    .then(data => {
+        document.getElementById("crypto").innerHTML = `
+            <div class="flex-local">
+                <img src=${data.image.small} />
+                <span class="crypto-title">${data.name}</span>
+            </div>
+            <p><span class="crypto-icons">&#8594</span> : $${data.market_data.current_price.usd} <small>current value</small></p>
+            <p><span class="crypto-icons">&#8593</span> : $${data.market_data.high_24h.usd} <small>24h high</small></p>
+            <p><span class="crypto-icons">&#8595</span> : $${data.market_data.low_24h.usd} <small>24h low</small></p>
+        `
+    })
+    .catch(err => {
+        document.getElementById("crypto").innerHTML = "Service not available, please try again later"
+        console.error(err)
+
+    })
+
+// weather app using geolocation
+navigator.geolocation.getCurrentPosition(position => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=9bea25b1d242598a3943919c7066dc10&units=metric`)
+        .then(res => {
+            if(!res.ok) {
+                throw Error("Something went wrong")
+            }
+            return res.json()
+        })
         .then(data => {
-            deckId = data.deck_id
-            drawBtn.disabled = false
-            remainingCards.innerText = data.remaining
-            resetGame()
+            const weatherIconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+            document.getElementById("weather").innerHTML = `
+                <img src=${weatherIconUrl}>
+                <span class="weather-temp">${Math.round(data.main.temp*10)/10}&#xb0</span>
+                <span class="weather-location">${data.name}</span>
+            `
+        })
+        .catch(err => {
+            document.getElementById("weather").innerHTML = "Service not available, please try again later"
+            console.log(err)
         })
 })
 
-// draw two cards
-drawBtn.addEventListener("click", () => {
-    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
-        .then(res => res.json())
-        .then(data => {
-            remainingCards.innerText = data.remaining
-            document.getElementById("computer-card").innerHTML = `<img src="${data.cards[0].image}">`
-            document.getElementById("player-card").innerHTML = `<img src="${data.cards[1].image}">`
-            evalCards(data.cards[0].value, data.cards[1].value)
-            checkGameEnd(data.remaining)
-        })
-})
+// local time
+function myTime() {
+    const date = new Date()
+    document.getElementById("time").innerHTML = `${date.toLocaleTimeString([], {timeStyle: 'medium', hour12: false})}<p class="small-date">${date.toLocaleDateString('de-DE')}</p>`;
 
-document.getElementById("play-again").addEventListener("click", () => {
-    drawBtn.disabled = true
-    resetGame()
-})
-
-
-// ============================================================================================================
-// evaluate the card values + add score + render score
-function evalCards(cardOne, cardTwo) {
-    playerComp = changeCardValue(cardOne)
-    playerPlayer = changeCardValue(cardTwo)
-    if(playerComp !== playerPlayer){
-        playerComp > playerPlayer ? scoreComp++ : scorePlayer++
-    }
-    document.getElementById("computer-score").innerText = scoreComp
-    document.getElementById("player-score").innerText = scorePlayer
 }
 
-// change the value of the cards with pictures on them
-function changeCardValue(card) {
-    const evalCards = ({
-        "JACK": 12,
-        "QUEEN" : 13,
-        "KING": 14,
-        "ACE": 15,
-    })[card] ?? card
-    return parseInt(evalCards)
-}
-
-// check for the end of the game
-function checkGameEnd(remaining) {
-    if(remaining === 0) {
-        document.querySelector(".overlay").style.display = "block"
-        document.getElementById("end-message").innerText = scoreComp > scorePlayer ? "Computer won :/" : "Player WON!"
-    }
-}
-
-// reset game
-function resetGame() {
-    scoreComp = 0
-    scorePlayer = 0
-    document.getElementById("computer-score").innerText = 0
-    document.getElementById("player-score").innerText = 0
-    document.getElementById("computer-card").innerHTML = ""
-    document.getElementById("player-card").innerHTML = ""
-    document.querySelector(".overlay").style.display = "none"
-    document.getElementById("title").classList.add("expand-text")
-    setTimeout(() => {
-        document.getElementById("title").classList.remove("expand-text")
-    }, 1000); 
-}
-
+setInterval(myTime, 1000);

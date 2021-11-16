@@ -5,34 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>War Game</title>
+    <title>Capstone</title>
 </head>
 <body>
-        
-    <div class="container">
 
-        <div class="top-of-table">
-            <button class="btn" id="shuffle-btn">Shuffle Deck</button>
-            <span>Remaining cards: <span id="remaining-cards">0</span></span>
+    <main id="main">
+        <div class="flex-local">
+            <div id="crypto"></div>
+            <div id="weather"></div>
         </div>
-        <h1 id="title">&nbsp&nbspWAR!!!</h1>
-        <p>Computer: <span id="computer-score">0</span></p>
-        <div id="computer-card"></div>
-        <div id="player-card"></div>
-        <p>Me: <span id="player-score">0</span></p>
-        <button class="btn" id="draw-btn" disabled>Draw</button>
-
-    <div class="overlay">
-        <div id="end-game">
-            <span id="end-message"></span>
-            <button class="btn" id="play-again">Play again</button>
+        <div class="center-time" id="time">...</div>
+        <div class="flex-local">
+            <p id="author"></p>
+            <!-- <p>Something else</p> -->
         </div>
-    </div>
-
-    </div>
-
+    </main>
 
     <script src="script.js"></script>
 </body>
