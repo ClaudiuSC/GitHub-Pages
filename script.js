@@ -60,7 +60,7 @@ navigator.geolocation.getCurrentPosition(position => {
             `
         })
         .catch(err => {
-            document.getElementById("weather").innerHTML = position.coords.latitude + position.coords.longitude + "Geolocation is not working on git pages"
+            document.getElementById("weather").innerHTML = position.coords.latitude + position.coords.longitude"
             console.log(err)
         })
 })
