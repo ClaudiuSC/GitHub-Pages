@@ -60,7 +60,7 @@ navigator.geolocation.getCurrentPosition(position => {
             `
         })
         .catch(err => {
-            document.getElementById("weather").innerHTML = position.coords.latitude + position.coords.longitude"
+            document.getElementById("weather").innerHTML = position.coords.latitude + " " + position.coords.longitude"
             console.log(err)
         })
 })
