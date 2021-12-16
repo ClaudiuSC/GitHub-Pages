@@ -1,106 +1,115 @@
-:root {
-  --shadow: 0px 0px 10px rgba(0, 0, 0, 0.80);
-}
-
 * {
     box-sizing: border-box;
-    margin: 0;
   }
 
-  body {
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-  }
-
-  /* layout */
-main {
-  height: 100vh;
+:root {
+  --contour-color: rgb(14, 1, 92);
+  --fill-color: #3494e4;
+}
+  
+body {
+  display: flex;
+  /* height: 100vh; */
   width: 100vw;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgb(218, 238, 255);
+}
+
+h1 {
+  margin: 40px 0 10px;
+}
+
+h3 {
+  margin: 10px 0
+}
+
+.cup {
+  background-color: white;
+  color: var(--contour-color);
+  border: 4px solid var(--contour-color);
+  border-radius: 0 0 40px 40px;
+  height: 320px;
+  width: 160px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
-.flex-local {
+.cups {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 200px;
+}
+
+.cup-small {
+  border-radius: 0 0 10px 10px;
+  height: 80px;
+  width: 40px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: .875rem;
+  transition: .3s ease;
+  display: flex;
   align-items: center;
-}
-
-/* clock in center */
-.center-time {
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(50%); */
-  font-size: 4rem;
-  font-weight: 900;
-  margin: 0 auto;
-}
-
-.small-date {
+  justify-content: center;
   text-align: center;
-  font-size: 1.5rem;
+  border: 3px solid var(--contour-color);
 }
 
-/* image and text shadows */
-p,
-span,
-.center-time  {
-  text-shadow: var(--shadow);
+.cup-small.full {
+  background-color: var(--fill-color);
+  color: white;
 }
 
-img {
-  filter: drop-shadow(var(--shadow));
-}
-
-/* crypto section styling */
-.crypto-title {
-  font-size: 2rem;
-  font-weight: 900;
-  margin-right: 10px;
-  z-index: 10;
-}
-
-.crypto-icons {
-  display: inline-block;
-  width: 20px;
-  text-align: center;
+.text {
+  margin: 2em 0 0.4em;
   font-size: 1.2rem;
 }
 
-/* weather section styling */
-#weather {
+.remained {
+  flex: 1;
+  text-align: center;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  margin-top: -70px;
+  flex-direction: column;
+  justify-content: center;
+  transition: .3s ease;
 }
 
-#weather .weather-location {
-  width: 100%;
-  text-align: end;
-  font-size: 1.5rem;
-  margin-top: -10px;
+.remained small {
+  font-size: .8rem;
 }
 
-#weather .weather-temp {
-  font-size: 3rem;
+.percentage {
+  background-color: var(--fill-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  height: 0;
+  transition: .3s ease;
+  color: white;
 }
 
-#weather img {
-  width: 5rem;
-}
-
-/* crypto section and weather section were touching at very small screens so i've hidden some info from the crypto widget*/
-@media (max-width: 450px) {
-  #crypto small {
-    display: none;
+@media (max-width: 400px) {
+  body {
+    padding: 1rem;
   }
+
+  h1 {
+    margin: 0 auto;
+  }
+
+  .text {
+    text-align: center;
+    margin: 0.4em 0 0;
+  }
+
 }

@@ -1,75 +1,54 @@
-// Unsplash image used for background image => still waiting my account to get activated and i am using the scrimba api
-// fetch("https://api.unsplash.com/photos/?YyNmKuRo25f8VWci84VPBdpb5WV1_jkRO2x_k84Yg9M?random?orientation=landscape&query=nature") ???check if url is correct
-fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
-    .then(res => {
-        if(!res.ok) {
-            throw Error("Something went wrong")
-        }
-        return res.json()
-    }
-        )
-    .then(data => {
-        document.getElementById("main").style.backgroundImage = `url(${data.urls.regular})`
-        document.getElementById("author").innerHTML = `<small>Picture by:</small> ${data.user.name}`
-    })
-    .catch(err => {
-        console.log(err)
-        document.getElementById("main").style.backgroundImage = `url(https://images.unsplash.com/photo-1488711500009-f9111944b1ab?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDI0NzB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MzcwNjM4NTI&ixlib=rb-1.2.1&q=85)`
-    })
+const smallCups = document.querySelectorAll(".cup-small")
+const liters =  document.getElementById("liters")
+const percentage =  document.getElementById("percentage")
+const remained =  document.getElementById("remained")
+const goal = document.getElementById("goal")
 
-// Coingecko API
-fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
-    .then(res => {
-        if (!res.ok) {
-            throw Error("Something went wrong")
-        }
-        return res.json()
-    })
-    .then(data => {
-        document.getElementById("crypto").innerHTML = `
-            <div class="flex-local">
-                <img src=${data.image.small} />
-                <span class="crypto-title">${data.name}</span>
-            </div>
-            <p><span class="crypto-icons">&#8594</span> : $${data.market_data.current_price.usd} <small>current value</small></p>
-            <p><span class="crypto-icons">&#8593</span> : $${data.market_data.high_24h.usd} <small>24h high</small></p>
-            <p><span class="crypto-icons">&#8595</span> : $${data.market_data.low_24h.usd} <small>24h low</small></p>
-        `
-    })
-    .catch(err => {
-        document.getElementById("crypto").innerHTML = "Service not available, please try again later"
-        console.error(err)
+renderLitres()
 
-    })
-
-// weather app using geolocation
-navigator.geolocation.getCurrentPosition(position => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=9bea25b1d242598a3943919c7066dc10&units=metric`)
-        .then(res => {
-            if(!res.ok) {
-                throw Error("Something went wrong")
-            }
-            return res.json()
-        })
-        .then(data => {
-            const weatherIconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-            document.getElementById("weather").innerHTML = `
-                <img src=${weatherIconUrl}>
-                <span class="weather-temp">${Math.round(data.main.temp*10)/10}&#xb0</span>
-                <span class="weather-location">${data.name}</span>
-            `
-        })
-        .catch(err => {
-            document.getElementById("weather").innerHTML = "Service not available, please try again later"
-            console.log(err)
-        })
+smallCups.forEach((cup, index) => {
+    cup.addEventListener("click", () => highlightCups(index))
 })
 
-// local time
-function myTime() {
-    const date = new Date()
-    document.getElementById("time").innerHTML = `${date.toLocaleTimeString([], {timeStyle: 'medium', hour12: false})}<p class="small-date">${date.toLocaleDateString('de-DE')}</p>`;
+function highlightCups(index) {
+    // first if is to check for the end of the array - we get an error for the next sibling class list if last in array
+    // second if adds the functionality of emptying a glass by clicking on it(not true for the last glass though)
+    // added OR condition so that you can empty the last cup(and eliminated an error regarded to the next sibling when index was las of array)
+    if  (smallCups[index].classList.contains("full") && 
+        (!smallCups[index].nextElementSibling || !smallCups[index].nextElementSibling.classList.contains("full"))) {
+        index--
+    } 
 
+    // compares the index of the cup that is clicked and adds the class "full" to all the elements to that index AND removes the class "full" for the ones that have bigger indexes
+    smallCups.forEach((cup, index2) => {
+        if(index2 <= index) {
+            cup.classList.add("full")
+        } else {
+            cup.classList.remove("full")
+        }
+    })
+    
+    renderLitres(index)
+    
+
+    updateBigCup(index)
 }
 
-setInterval(myTime, 1000);
+function updateBigCup(index) {
+    const calc = 100 / smallCups.length * (index + 1)
+    // makes the text disappear if the value is 0
+    percentage.innerText = calc ? `${calc}%` : ""
+    // sets the height of the element
+    percentage.style.height = `${calc}%`
+
+    if(calc === 100) {
+        remained.style.height = "0"
+    }
+}
+
+
+function renderLitres(index) {
+        goal.innerText = `${.25*smallCups.length}`
+        liters.innerText = `${.25*smallCups.length - .25 * ((index + 1) ? (index + 1) : 0)}L`
+        // liters.innerText = `${2 - .25 * (index + 1)}L`
+}
