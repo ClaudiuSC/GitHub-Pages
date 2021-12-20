@@ -1,46 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Drink Water</title>
+    <title>Movie App</title>
 </head>
 <body>
+    
+        <nav class="navbar">
+            <h1>Movie App</h1>
+            <form action="submit">
+                <input type="text" id="search" placeholder="Search">
+            </form>
+        </nav>
 
-    <h1>Drink Water</h1>
-    <h3>Goal: <span id="goal"></span> Liters</h3>
-
-    <div class="cup">
-        <div class="remained" id="remained">
-            <span id="liters"></span>
-            <small>Remaining</small>
-        </div>
-        <div class="percentage" id="percentage"></div>
-    </div>
-
-    <p class="text">Select how many glasses of water have you drank</p>
-    <div class="cups">
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <!-- <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div>
-        <div class="cup cup-small">250 ml</div> -->
-    </div>
+        <main class="main" id="main">
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating green">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating orange">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating red">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating green">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating green">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating green">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating green">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+            <div class="movie">
+                <img class="poster" src="https://unsplash.it/640/425" alt="" srcset="">
+                <div class="movie-header">
+                    <h2 class="title">Movie Title</h2>
+                    <span class="rating green">10</span>
+                </div>
+                <p class="overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, architecto.</p>
+            </div>
+        </main>
 
     <script src="script.js"></script>
 </body>
